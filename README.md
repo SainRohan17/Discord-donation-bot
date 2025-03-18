@@ -1,1 +1,1 @@
-# A basic discord bot that logs donations.
+A basic discord bot that logs donations.
