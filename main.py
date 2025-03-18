@@ -60,7 +60,7 @@ async def donation_log(interaction: discord.Interaction, user_id: str, amount: i
         title="Donation Logged",
         description=f"A new donation has been recorded",
         color=0xF5CB7A,
-        timestamp=datetime.now(datetime.UTC)
+        timestamp=datetime.utcnow()
     )
     embed.add_field(name="<:user:1351230258560503909>・User", value=f"<@{user_id}>", inline=False)
     embed.add_field(name="<:amount:1351230582343995432>・Amount", value=f"{amount}", inline=False)
@@ -84,7 +84,7 @@ async def user_donation(interaction: discord.Interaction, user_id: str):
             title="Donation History",
             description=f"Donation history for <@{user_id}>",
             color=0xF5CB7A,
-            timestamp=datetime.now(datetime.UTC)
+            timestamp=datetime.utcnow()
         )
         
         donation_list = donations[user_id]
@@ -105,7 +105,7 @@ async def user_donation(interaction: discord.Interaction, user_id: str):
             title="No Donations Found",
             description=f"No donations have been recorded for <@{user_id}>",
             color=0xF5CB7A,
-            timestamp=datetime.now(datetime.UTC)
+            timestamp=datetime.utcnow()
         )
         embed.set_footer(text=f"Requested by {interaction.user.name}")
         
@@ -123,7 +123,7 @@ async def leaderboard(interaction: discord.Interaction):
             title="Donation Leaderboard",
             description="No donations have been recorded yet.",
             color=0xF5CB7A,
-            timestamp=datetime.now(datetime.UTC)
+            timestamp=datetime.utcnow()
         )
         await interaction.response.send_message(embed=embed)
         return
@@ -138,7 +138,7 @@ async def leaderboard(interaction: discord.Interaction):
         title="<:top_donors:1351229089972752455>  Donation Leaderboard  <:top_donors:1351229089972752455>",
         description="Top donors by total donation amount",
         color=0xF5CB7A,
-        timestamp=datetime.now(datetime.UTC)
+        timestamp=datetime.utcnow()
     )
     
     for i, (user_id, amount) in enumerate(top_donors, 1):
