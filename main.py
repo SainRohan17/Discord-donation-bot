@@ -263,7 +263,7 @@ async def leaderboard(interaction: discord.Interaction):
 async def give_role(
     interaction: discord.Interaction, 
     user_id: str, 
-    role_type: app_commands.Choice[str]
+    role_type: str
 ):
     """Give donor role to a user"""
     if user_id not in donations:
@@ -290,7 +290,17 @@ async def give_role(
         await interaction.response.send_message(embed=embed)
         return
     
-    role_name = role_type.value
+    if role_type not in ["orbital", "galactic", "cosmic"]:
+        embed = discord.Embed(
+            title="Role Assignment Failed",
+            description="Invalid role type. Please choose from 'orbital', 'galactic', or 'cosmic'.",
+            color=0xF5CB7A,
+            timestamp=datetime.utcnow()
+        )
+        await interaction.response.send_message(embed=embed)
+        return
+    
+    role_name = role_type
     
     donor_role = discord.utils.get(guild.roles, name=ROLE_NAMES["donor"])
     tier_role = discord.utils.get(guild.roles, name=ROLE_NAMES[role_name])
